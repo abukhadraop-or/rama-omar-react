@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card } from "../Card/card";
+import { CardList } from "../Card/cardList";
 import { NavBar } from "../NavBar/navBar";
 import { SortCards } from "../Sort/sortCards";
 import { CardContainer, Divider, LoadMoreButton } from "./MoviesMain.style";
@@ -40,7 +40,7 @@ export function MoviesMain() {
       <Divider>
         <SortCards setMovies={setMovies}/>
         <CardContainer>
-          <Card movies={movies}/>
+          <CardList movies={movies}/>
           <LoadMoreButton>Load More</LoadMoreButton>
         </CardContainer>
       </Divider>
