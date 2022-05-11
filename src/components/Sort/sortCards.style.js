@@ -5,10 +5,10 @@ export const SortCard = styled.div`
     width: 100%;
   }
   
-  width: 16em;
+  width: 18em;
   height: 3em;
-  border: solid 0.1em #d3d3d3;
-  box-shadow: 0.1em 0.1em #d3d3d3;
+  border: solid 0.1em #ededed;
+  box-shadow: 0.1em 0.1em #ededed;
   border-radius: 0.5em;
   margin-top: 0.75em;
   &:hover {
@@ -26,27 +26,29 @@ export const SortText = styled.p`
 export const Contn = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: -2em;
-  @media screen and (max-width: 2560px) {
-    margin-left: 6em;
-    margin-right: -2%;
-  }
+  flex: 1;
+  z-index: 133;
+
   @media screen and (max-width: 576px) {
     display: block;
   }
-  z-index: 133;
 
   @media screen and (max-width: 768px){
     margin-left: 3em;
+    margin-right: 2em;
+  }
+  @media screen and (min-width: 769px) {
+    margin-left: 6em;
     margin-right: 2em;
   }
 `;
 
 export const ShowedDetails = styled.div`
   height: 7em;
-  width: 16em;
-  margin-top: -0.15em;
+  width: 18em;
+  margin-top: -1.2rem;
   border: solid 0.1em #d3d3d3;
+  border-top: none;
   border-bottom-right-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
   display: ${(props) => (props.disp === true ? "block" : "none")};
@@ -59,6 +61,7 @@ export const ShowedDetails = styled.div`
 export const ShowedText = styled.p`
   color: grey;
   margin-left: 1em;
+  padding-top: 1rem;
 `;
 
 export const DropMenu = styled.select`
@@ -72,10 +75,6 @@ export const DropMenu = styled.select`
     background-color: #d3d3d3;
   }
 
-  @media screen and (max-width: 768px){
-    margin-left: 2.5em;
-  }
-  
 `;
 
 export const DropOption = styled.option`
@@ -85,14 +84,14 @@ export const DropOption = styled.option`
 
 export const SortForm = styled.form`
   border: none;
-  width: 100%;
+  //width: 100%;
 `;
 
 
 export const SortBtn = styled.button`
   border: none;
   border-radius: 2em;
-  width: 16em;
+  width: 18em;
   height: 3em;
   margin-top: 2em;
   color: white;

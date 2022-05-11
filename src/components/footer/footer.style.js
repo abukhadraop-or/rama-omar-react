@@ -4,8 +4,9 @@ export const FooterNav = styled.footer`
   background-color: #0d253f;
   width: 100%;
   height: 20em;
-  padding-right: 10%;
-  @media screen and (max-width: 576px) {
+  //padding-right: 10%;
+  @media screen and (max-width: 768px) {
+    height: 60em;
   }
 `;
 
@@ -14,6 +15,10 @@ export const FooterImage = styled.img`
   width: 9em;
   margin-top: 5em;
   margin-left: 15%;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const FooterInfo = styled.p`
@@ -34,15 +39,25 @@ export const FooterInfo = styled.p`
 export const FooterCont = styled.div`
   position: relative;
   float: left;
+
+  @media screen and (max-width: 768px){
+    float: none;
+    margin-bottom: 1rem;;
+  }
 `;
 
 export const FooterContainer = styled.div`
-  width: 95%;
+  //width: 95%;
   height: 90%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 5%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    margin-left: 3rem;
+  }
 `;
 
 export const FooterWrapper = styled.div`
@@ -51,4 +66,9 @@ export const FooterWrapper = styled.div`
   grid-template-columns: repeat(4, minmax(80px, 1fr));
   gap: 30px;
   margin-top: 5em;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: minmax(50px, 1fr);
+    gap: 0.5rem;
+    grid-template-rows: auto;
+  }
 `;
