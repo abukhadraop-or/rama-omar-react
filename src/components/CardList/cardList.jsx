@@ -1,7 +1,5 @@
-//import { render } from "@testing-library/react";
 import {
   Conts,
-  //TitleHovered,
 } from "./card-list.style";
 
 import Card from '../Card/Card';

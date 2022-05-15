@@ -251,7 +251,6 @@ export const OverView = styled.p`
   width: auto;
   height: 2rem;
   border: none;
-  //box-sizing: border-box;
 
   @media screen and (min-width: 769px) {
     display: none;
