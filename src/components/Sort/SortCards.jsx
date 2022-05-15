@@ -9,50 +9,40 @@ import {
   SortForm,
   SortBtn,
   Populr
-} from "./sortCards.style";
+} from "./sort-cards.style";
 
 import { useState } from "react";
 
-export const SortCards = ({ setMovies }) => {
+export const SortCards = ({ setSortTypeMain }) => {
   const [SortState, setSortState] = useState(true);
   const [SortType, setSortType] = useState("popularity.desc");
   const [BtnDisabled, setBtnDisabled] = useState("disabled");
 
+  /**
+  * 
+  *Toggles the SortState to show or hide a menu to choose the sorting type
+  */
   const SortClickHandler = () => {
-    if (SortState === true) {
-      setSortState(false);
-    } else {
-      setSortState(true);
-    }
+    setSortState(!SortState)
   };
 
+  /**
+   *Sets the btnDisabled to false so it can be clicked and set the sort type to tje value that is sent by the props to be used in the api link 
+   * @param props that holds the sort type
+   */
   const searchOnChangeHandler = (props) => {
     setBtnDisabled("false");
     setSortType(props);
   };
 
-  const btnSearchHandler = (e) => {
-    e.preventDefault();
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=d6566c2bb246801ddff14c1d50aa232e&language=en-US&sort_by=${SortType}&include_adult=false&include_video=false&page=1`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        const Sorted = data.results.map((movieData) => {
-          return {
-            key: movieData.id,
-            poster: movieData.backdrop_path,
-            release_date: movieData.release_date,
-            title: movieData.title,
-            percent: movieData.vote_average,
-          };
-        });
-        setMovies(Sorted);
-        console.log(Sorted);
-      });
-  };
+  /**
+  * set the sort type that will be used to fetch the api link in MoviesMain 
+  * @param  e 
+  */
+   const btnSearchHandler = (e) => {
+      e.preventDefault();
+      setSortTypeMain(SortType);
+   };
 
   return (
     <Contn>

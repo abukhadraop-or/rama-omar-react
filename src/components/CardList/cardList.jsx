@@ -2,9 +2,9 @@
 import {
   Conts,
   //TitleHovered,
-} from "./cardList.style";
+} from "./card-list.style";
 
-import Card from './Card';
+import Card from '../Card/Card';
 
 export const CardList = ({ movies }) => {
 

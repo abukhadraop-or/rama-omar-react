@@ -1,26 +1,26 @@
 import styled, { css } from "styled-components";
 
 export const SortCard = styled.div`
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-  
-  width: 18em;
-  height: 3em;
-  border: solid 0.1em #ededed;
-  box-shadow: 0.1em 0.1em #ededed;
-  border-radius: 0.5em;
-  margin-top: 0.75em;
+  width: 100%;
+  height: 3rem;
+  border: solid 0.1rem #ededed;
+  box-shadow: 0.2rem 0.2rem 0.2rem #ededed;
+  border-radius: 0.5rem;
+  margin-top: 0.75rem;
   &:hover {
     cursor: pointer;
   }
   z-index: 132;
+
+  @media screen and (min-width: 769px) {
+    width: 18rem;
+  }
 `;
 
 export const SortText = styled.p`
   color: black;
   font-weight: bold;
-  margin-left: 1em;
+  margin-left: 1rem;
 `;
 
 export const Contn = styled.div`
@@ -28,53 +28,47 @@ export const Contn = styled.div`
   flex-direction: column;
   flex: 1;
   z-index: 133;
+  margin-left: 3rem;
+  margin-right: 2rem;
 
-  @media screen and (max-width: 576px) {
-    display: block;
-  }
-
-  @media screen and (max-width: 768px){
-    margin-left: 3em;
-    margin-right: 2em;
-  }
   @media screen and (min-width: 769px) {
-    margin-left: 6em;
-    margin-right: 2em;
+    margin-left: 6rem;
+    margin-right: 2rem;
   }
 `;
 
 export const ShowedDetails = styled.div`
-  height: 7em;
-  width: 18em;
+  width: 100%;
+  height: 7rem;
   margin-top: -1.2rem;
-  border: solid 0.1em #d3d3d3;
+  border: solid 0.1rem #ededed;
+  box-shadow: 0.2rem 0.2rem 0.2rem #ededed;
   border-top: none;
-  border-bottom-right-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
   display: ${(props) => (props.disp === true ? "block" : "none")};
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
+  @media screen and (min-width: 769px) {
+    width: 18rem;
   }
 `;
 
 export const ShowedText = styled.p`
   color: grey;
-  margin-left: 1em;
+  margin-left: 1rem;
   padding-top: 1rem;
 `;
 
 export const DropMenu = styled.select`
   width: 90%;
-  height: 2.7em;
-  margin-left: 1em;
+  height: 2.7rem;
+  margin-left: 1rem;
   background-color: #ededed;
   border: none;
-  border-radius: 0.3em;
+  border-radius: 0.3rem;
   &:hover {
     background-color: #d3d3d3;
   }
-
 `;
 
 export const DropOption = styled.option`
@@ -84,19 +78,17 @@ export const DropOption = styled.option`
 
 export const SortForm = styled.form`
   border: none;
-  //width: 100%;
 `;
-
 
 export const SortBtn = styled.button`
   border: none;
-  border-radius: 2em;
-  width: 18em;
-  height: 3em;
-  margin-top: 2em;
+  border-radius: 2rem;
+  width: 100%;
+  height: 3rem;
+  margin-top: 2rem;
   color: white;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1rem;
   ${(props) =>
     props.disable === "false"
       ? css`
@@ -112,12 +104,12 @@ export const SortBtn = styled.button`
 
   z-index: 134;
 
-  @media screen and (max-width: 768px){
-    width: 100%;
+  @media screen and (min-width: 769px) {
+    width: 18rem;
   }
 `;
 
 export const Populr = styled.p`
-  font-size: 2em;
-  margin-top: 2em;
+  font-size: 2rem;
+  margin-top: 2rem;
 `;
