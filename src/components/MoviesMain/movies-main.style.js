@@ -33,8 +33,8 @@ export const CardContainer = styled.div`
   height: 100%;
   margin-top: 7rem;
 
-  @media screen and (min-width: 769x) {
-    margin-right: 10rem;
+  @media screen and (min-width: 769px) {
+    margin-right: 6rem;
     margin-left: 6rem;
   }
 `;
