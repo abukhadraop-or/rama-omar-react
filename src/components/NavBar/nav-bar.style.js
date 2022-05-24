@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Colors } from '../Res/colors';
+import Breakpoint from '../Res/breakpoints';
 
 export const NavBarHeader = styled.nav`
-  background-color: #0d253f;
+  background-color: ${Colors.darkBlue};
   width: 100%;
   height: 4rem;
   overflow: hidden;
@@ -13,10 +15,11 @@ export const NavText = styled.p`
   padding-top: 0.5rem;
   padding-right: 1.5rem;
   float: left;
+  font-weight: ${({ sign }) => (sign === 'plus' ? 'bold' : 'none')};
+
   &:hover {
     cursor: pointer;
   }
-  font-weight: ${(props) => (props.sign === "plus" ? "bold" : "none")};
 `;
 
 export const Logo = styled.img`
@@ -25,6 +28,7 @@ export const Logo = styled.img`
   height: 4rem;
   padding-right: 1.5rem;
   margin-left: 10%;
+
   &:hover {
     cursor: pointer;
   }
@@ -48,7 +52,7 @@ export const NavTextOption = styled.div`
 export const RightNavText = styled.div`
   display: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: block;
     float: right;
     margin-right: 9rem;
@@ -59,7 +63,7 @@ export const RightNavText = styled.div`
 export const LeftNavText = styled.div`
   display: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: block;
     float: left;
     margin-left: 2rem;
@@ -74,21 +78,29 @@ export const SmallNavImg = styled.img`
   margin-left: 40%;
   margin-top: 0.5rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: none;
   }
 `;
 
-export const SmallNavMenu = styled.img`
+export const SmallNavMenu = styled.div`
   display: block;
   position: absolute;
   width: 2rem;
-  height: 2rem;
+  height: 4rem;
   float: left;
   margin-left: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.3rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: none;
   }
+`;
+
+export const MenuLines = styled.div`
+  height: 0.3rem;
+  width: 100%;
+  background-color: white;
+  margin-top: 0.2rem;
+  border-radius: 0.3rem;
 `;

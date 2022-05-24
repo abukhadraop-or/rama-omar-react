@@ -1,18 +1,21 @@
 import styled, { css } from "styled-components";
+import { Colors } from "../Res/colors";
+import Breakpoint from "../Res/breakpoints";
 
 export const SortCard = styled.div`
   width: 100%;
   height: 3rem;
-  border: solid 0.1rem #ededed;
-  box-shadow: 0.2rem 0.2rem 0.2rem #ededed;
+  border: solid 0.1rem ${Colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
   border-radius: 0.5rem;
   margin-top: 0.75rem;
+  z-index: 132;
+
   &:hover {
     cursor: pointer;
   }
-  z-index: 132;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     width: 18rem;
   }
 `;
@@ -23,7 +26,7 @@ export const SortText = styled.p`
   margin-left: 1rem;
 `;
 
-export const Contn = styled.div`
+export const SortContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -31,7 +34,7 @@ export const Contn = styled.div`
   margin-left: 3rem;
   margin-right: 2rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     margin-left: 6rem;
     margin-right: 2rem;
   }
@@ -41,14 +44,15 @@ export const ShowedDetails = styled.div`
   width: 100%;
   height: 7rem;
   margin-top: -1.2rem;
-  border: solid 0.1rem #ededed;
-  box-shadow: 0.2rem 0.2rem 0.2rem #ededed;
+  border: solid 0.1rem ${Colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
   border-top: none;
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  display: ${(props) => (props.disp === true ? "block" : "none")};
+  display: ${({ displayDetails }) =>
+    displayDetails === true ? "block" : "none"};
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     width: 18rem;
   }
 `;
@@ -63,11 +67,12 @@ export const DropMenu = styled.select`
   width: 90%;
   height: 2.7rem;
   margin-left: 1rem;
-  background-color: #ededed;
+  background-color: ${Colors.lightGrey};
   border: none;
   border-radius: 0.3rem;
+
   &:hover {
-    background-color: #d3d3d3;
+    background-color: ${Colors.veryLightGrey};
   }
 `;
 
@@ -89,12 +94,14 @@ export const SortBtn = styled.button`
   color: white;
   font-weight: bold;
   font-size: 1rem;
-  ${(props) =>
-    props.disable === "false"
+  z-index: 134;
+
+  ${({ disable }) =>
+    disable === "false"
       ? css`
-          background-color: #01b4e4;
+          background-color: ${Colors.midBlue};
           &:hover {
-            background-color: #0d253f;
+            background-color: ${Colors.darkBlue};
           }
         `
       : css`
@@ -102,14 +109,12 @@ export const SortBtn = styled.button`
           color: grey;
         `}
 
-  z-index: 134;
-
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     width: 18rem;
   }
 `;
 
-export const Populr = styled.p`
+export const PopularTitle = styled.p`
   font-size: 2rem;
   margin-top: 2rem;
 `;

@@ -1,10 +1,13 @@
 import styled, { css } from "styled-components";
+import { Colors } from "../Res/colors";
+import Breakpoint from "../Res/breakpoints";
 
 export const FooterNav = styled.footer`
-  background-color: #0d253f;
+  background-color: ${Colors.darkBlue};
   width: 100%;
   height: 60rem;
-  @media screen and (min-width: 769px) {
+
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     height: 25rem;
   }
 `;
@@ -12,7 +15,7 @@ export const FooterNav = styled.footer`
 export const FooterImage = styled.img`
   display: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: block;
     height: 9rem;
     width: 9rem;
@@ -22,8 +25,9 @@ export const FooterImage = styled.img`
 
 export const FooterInfo = styled.p`
   color: white;
-  ${(props) =>
-    props.title === "Title"
+
+  ${({ title }) =>
+    title === "Title"
       ? css`
           font-weight: bold;
         `
@@ -39,7 +43,7 @@ export const FooterCont = styled.div`
   float: none;
   margin-bottom: 1rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     position: relative;
     float: left;
   }
@@ -50,9 +54,9 @@ export const FooterContainer = styled.div`
   margin-left: 3rem;
   display: flex;
   justify-content: center;
-  gap: 5%;
+  gap: 5rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     flex-direction: row;
   }
 `;
@@ -63,8 +67,8 @@ export const FooterWrapper = styled.div`
   grid-template-rows: auto;
   display: grid;
   margin-top: 5rem;
-  
-  @media screen and (min-width: 769px) {
+
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     grid-template-rows: repeat(auto-fit, minmax(70px, 1fr));
     grid-template-columns: repeat(4, minmax(70px, 1fr));
     gap: 3rem;

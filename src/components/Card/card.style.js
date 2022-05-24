@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
+import { Colors } from "../Res/colors";
+import Breakpoint from "../Res/breakpoints";
 
 export const Container = styled.div`
   border-radius: 0.5rem;
-  border: solid 0.1rem #ededed;
-  box-shadow: 0.2rem 0.2rem 0.2rem #ededed;
+  border: solid 0.1rem ${Colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
   position: relative;
 `;
 
@@ -18,32 +20,35 @@ export const Title = styled.p`
   width: auto;
   z-index: 1;
   height: auto;
+
   &:hover {
-    color: #1eb6ff;
+    color: ${Colors.hoveredBlue};
     cursor: pointer;
   }
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: block;
     margin-left: 0.5rem;
     margin-top: 2rem;
     position: relative;
 
-    ${(props) =>
-      props.percentage === "white"
-        ? css`
+    ${({ percentageColor }) =>
+      percentageColor === "white" &&
+      `
             color: white;
             margin-top: 0.5rem;
             margin-left: 0.09rem;
+
             &:hover {
               color: white;
               cursor: default;
               z-index: 103;
             }
-          `
-        : css`
-            color: black;
           `}
+    ${({ percentageColor }) =>
+      percentageColor !== "white" &&
+      `
+      color: black;`}
   }
 `;
 
@@ -57,7 +62,7 @@ export const PosterImg = styled.img`
   z-index: -1;
   position: relative;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     width: 100%;
     height: auto;
     border-top-left-radius: 0.5rem;
@@ -66,27 +71,20 @@ export const PosterImg = styled.img`
   }
 `;
 
-export const CardDate = styled.p`
-  margin-top: -0.5rem;
-  display: block;
+export const CardDate = styled.div`
   margin-left: 7rem;
-  position: absolute;
-  color: #949494;
-  height: auto;
+  color: ${Colors.midGrey};
 
-  @media screen and (min-width: 769px) {
-    margin-top: 0rem;
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     margin-left: 0.5rem;
-    position: relative;
-    width: auto;
   }
 `;
 
 export const Circled = styled.div`
   display: none;
 
-  @media screen and (min-width: 769px) {
-    background-color: #222222;
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+    background-color: ${Colors.darkGrey};
     border-radius: 3rem;
     height: 2.5rem;
     width: 2.5rem;
@@ -101,34 +99,36 @@ export const Circled = styled.div`
 export const ColoredCircle = styled.div`
   display: none;
 
-  @media screen and (min-width: 769px) {
-    ${(props) =>
-      props.per >= 70
-        ? css`
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+    ${({ percentage }) =>
+      (percentage >= 70 &&
+        `
             background: conic-gradient(
-              #4bce7b 0,
-              #4bce7b ${(porps) => porps.per}%,
-              rgba(75, 206, 123, 0.35) 0,
-              rgba(75, 206, 123, 0.35) 100%
+              ${Colors.ratingGreen} 0,
+              ${Colors.ratingGreen} ${percentage}%,
+              ${Colors.lightRatingGreen} 0,
+              ${Colors.lightRatingGreen} 100%
             );
-          `
-        : props.per >= 50 && props.per < 70
-        ? css`
+          `) ||
+      (percentage >= 50 &&
+        percentage < 70 &&
+        `
             background: conic-gradient(
-              #ffef63 0,
-              #ffef63 ${(porps) => porps.per}%,
-              rgba(239, 246, 3, 0.35) 0,
-              rgba(239, 246, 3, 0.35) 100%
+              ${Colors.ratingYellow} 0,
+              ${Colors.ratingYellow} ${percentage}%,
+              ${Colors.lightRatingYellow} 0,
+              ${Colors.lightRatingYellow} 100%
             );
-          `
-        : css`
-            background: conic-gradient(
-              #ff0000 0,
-              #ff0000 ${(porps) => porps.per}%,
-              rgba(255, 0, 0, 0.35) 0,
-              rgba(255, 0, 0, 0.35) 100%
+          `) ||
+      (percentage < 50 &&
+        `
+        background: conic-gradient(
+              ${Colors.ratingRed} 0,
+              ${Colors.ratingRed} ${percentage}%,
+              ${Colors.lightRatingRed} 0,
+              ${Colors.lightRatingRed} 100%
             );
-          `}
+          `)}
 
     height: 2.2rem;
     width: 2.2rem;
@@ -142,41 +142,41 @@ export const ColoredCircle = styled.div`
 `;
 
 export const AboveCircle = styled.div`
-display: none;
+  display: none;
 
-@media screen and (min-width: 769px){
-  background-color: #222222;
-  z-index: 99;
-  height: 1.9rem;
-  width: 1.9rem;
-  border-radius: 3rem;
-  position: absolute;
-  margin-top: 0.18rem;
-  margin-left: 0.16rem;
-  font-size: 0.9rem;
-  display: block;
-}
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+    background-color: ${Colors.darkGrey};
+    z-index: 99;
+    height: 1.9rem;
+    width: 1.9rem;
+    border-radius: 3rem;
+    position: absolute;
+    margin-top: 0.18rem;
+    margin-left: 0.16rem;
+    font-size: 0.9rem;
+    display: block;
+  }
 `;
 
 export const ListButton = styled.div`
   display: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     width: 1.35rem;
     height: 1.35rem;
     border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: ${Colors.transparentWhite};
     z-index: 124;
     text-align: center;
     position: absolute;
     top: 0.5rem;
     right: 1rem;
-    color: rgba(0, 0, 0, 0.4);
+    color: ${Colors.veryDarkBlue};
     &:hover {
-      background-color: #01b4e4;
+      background-color: ${Colors.midBlue};
       cursor: pointer;
     }
-    display: ${(props) => (props.ListShow === true ? "none" : "block")};
+    display: ${({ listShow }) => (listShow === true ? "none" : "block")};
   }
 `;
 
@@ -193,18 +193,19 @@ export const ListMenu = styled.div`
 `;
 
 export const ListMenuOptions = styled.div`
-  ${(props) =>
-    props.Opt === "hd"
+  ${({ boldHeader }) =>
+    boldHeader === "boldHeader"
       ? css`
           font-weight: bold;
         `
       : css`
-          border-bottom: ${(props) =>
-            props.Bd === "brder" ? "0.1rem solid grey" : "none"};
+          border-bottom: ${({ midBorder }) =>
+            midBorder === "menuBorder" ? "0.1rem solid grey" : "none"};
           color: grey;
+
           &:hover {
             color: white;
-            background-color: #0d253f;
+            background-color: ${Colors.darkBlue};
             cursor: pointer;
           }
         `}
@@ -252,7 +253,7 @@ export const OverView = styled.p`
   height: 2rem;
   border: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: none;
   }
 `;

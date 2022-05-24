@@ -1,33 +1,38 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   SortCard,
   SortText,
-  Contn,
+  SortContainer,
   ShowedDetails,
   ShowedText,
   DropMenu,
   DropOption,
   SortForm,
   SortBtn,
-  Populr
-} from "./sort-cards.style";
+  PopularTitle,
+} from "components/Sort/sort-cards.style";
 
-import { useState } from "react";
-
-export const SortCards = ({ setSortTypeMain }) => {
-  const [SortState, setSortState] = useState(true);
-  const [SortType, setSortType] = useState("popularity.desc");
-  const [BtnDisabled, setBtnDisabled] = useState("disabled");
+/**
+ * Renders the SortCard
+ * @param {function} setSortTypeMain
+ * @returns SortCard
+ */
+export function SortCards({ setSortTypeMain }) {
+  const [sortState, setSortState] = useState(true);
+  const [sortType, setSortType] = useState("popularity.desc");
+  const [btnDisabled, setBtnDisabled] = useState("disabled");
 
   /**
-  * 
-  *Toggles the SortState to show or hide a menu to choose the sorting type
-  */
+   *
+   *Toggles the SortState to show or hide a menu to choose the sorting type
+   */
   const SortClickHandler = () => {
-    setSortState(!SortState)
+    setSortState(!sortState);
   };
 
   /**
-   *Sets the btnDisabled to false so it can be clicked and set the sort type to tje value that is sent by the props to be used in the api link 
+   *Sets the btnDisabled to false so it can be clicked and set the sort type to tje value that is sent by the props to be used in the api link.
    * @param props that holds the sort type
    */
   const searchOnChangeHandler = (props) => {
@@ -36,48 +41,44 @@ export const SortCards = ({ setSortTypeMain }) => {
   };
 
   /**
-  * set the sort type that will be used to fetch the api link in MoviesMain 
-  * @param  e 
-  */
-   const btnSearchHandler = (e) => {
-      e.preventDefault();
-      setSortTypeMain(SortType);
-   };
+   * set the sort type that will be used to fetch the api link in MoviesMain
+   * @param  e
+   */
+  const btnSearchHandler = (e) => {
+    e.preventDefault();
+    setSortTypeMain(sortType);
+  };
 
   return (
-    <Contn>
-      <Populr>Popular Movies</Populr>
+    <SortContainer>
+      <PopularTitle>Popular Movies</PopularTitle>
       <SortForm>
-          <SortCard onClick={SortClickHandler}>
-            <SortText>Sort</SortText>
-          </SortCard>
-          <ShowedDetails disp={SortState}>
-            <ShowedText> Sort Results By</ShowedText>
-            <DropMenu
-              onChange={(val) => {
-                searchOnChangeHandler(val.target.value);
-              }}
-            >
-              <DropOption value="popularity.desc">
-                Popularity Descending
-              </DropOption>
-              <DropOption value="popularity.asc">
-                Popularity Ascending
-              </DropOption>
-              <DropOption value="vote_average.desc">
-                Rating Descending
-              </DropOption>
-              <DropOption value="vote_average.asc">Rating Ascending</DropOption>
-              <DropOption value="release_date.desc">
-                Rating Date Descending
-              </DropOption>
-              <DropOption value="release_date.asc">
-                Rating Date Ascending
-              </DropOption>
-              <DropOption value="original_title.asc"> Title (A-Z)</DropOption>
-              <DropOption value="original_tite.desc"> Title (Z-A)</DropOption>
-            </DropMenu>
-          </ShowedDetails>
+        <SortCard onClick={SortClickHandler}>
+          <SortText>Sort</SortText>
+        </SortCard>
+        <ShowedDetails displayDetails={sortState}>
+          <ShowedText> Sort Results By</ShowedText>
+          <DropMenu
+            onChange={(val) => {
+              searchOnChangeHandler(val.target.value);
+            }}
+          >
+            <DropOption value="popularity.desc">
+              Popularity Descending
+            </DropOption>
+            <DropOption value="popularity.asc">Popularity Ascending</DropOption>
+            <DropOption value="vote_average.desc">Rating Descending</DropOption>
+            <DropOption value="vote_average.asc">Rating Ascending</DropOption>
+            <DropOption value="release_date.desc">
+              Rating Date Descending
+            </DropOption>
+            <DropOption value="release_date.asc">
+              Rating Date Ascending
+            </DropOption>
+            <DropOption value="original_title.asc"> Title (A-Z)</DropOption>
+            <DropOption value="original_title.desc"> Title (Z-A)</DropOption>
+          </DropMenu>
+        </ShowedDetails>
 
         <SortCard>
           <SortText>Filters</SortText>
@@ -87,12 +88,16 @@ export const SortCards = ({ setSortTypeMain }) => {
           <SortText>Where To Watch</SortText>
         </SortCard>
 
-          <SortBtn disable={BtnDisabled} onClick={btnSearchHandler}>
-            Search
-          </SortBtn>
+        <SortBtn disable={btnDisabled} onClick={btnSearchHandler}>
+          Search
+        </SortBtn>
       </SortForm>
-    </Contn>
+    </SortContainer>
   );
+}
+
+SortCards.propTypes = {
+  setSortTypeMain: PropTypes.func.isRequired,
 };
 
 export default SortCards;

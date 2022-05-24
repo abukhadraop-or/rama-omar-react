@@ -1,5 +1,6 @@
 import Moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import {
   Container,
@@ -17,19 +18,24 @@ import {
   OverView,
 } from "./card.style";
 
-export const Card = ({ movieO }) => {
-  const [ListClick, setListClick] = useState(false);
+/**
+ * Renders each movie card with its' content.
+ * @param {object} oneMovie
+ * @returns Card object.
+ */
+export function Card({ oneMovie }) {
+  const [listClick, setListClick] = useState(false);
 
-  /*
-  *Toggels the listClick state that blurrs the card and displays a list
-  */
+  /**
+   *Toggles the listClick state that blurs the card and displays a list.
+   */
   const ListOnClickHandler = () => {
-    setListClick(!ListClick);
+    setListClick(!listClick);
   };
 
-  /*
-  *Sets the ListClick to false to unBlurr the cards and hide the list
-  */
+  /**
+   *Sets the ListClick to false to un blur the cards and hide the list
+   */
   const overLayHandler = () => {
     setListClick(false);
   };
@@ -37,42 +43,48 @@ export const Card = ({ movieO }) => {
   return (
     <>
       <Container>
-        <ListButton onClick={ListOnClickHandler} ListShow={ListClick}>
+        <ListButton onClick={ListOnClickHandler} listShow={listClick}>
           ...
         </ListButton>
 
-        {ListClick && (
+        {listClick && (
           <>
             <ListMenu>
-              <ListMenuOptions Opt={"hd"}>
+              <ListMenuOptions boldHeader="boldHeader">
                 Want to rate or add this item to a list?
               </ListMenuOptions>
-              <ListMenuOptions Bd={"brder"}>Login</ListMenuOptions>
-              <ListMenuOptions Opt={"hd"}>Not a member?</ListMenuOptions>
+              <ListMenuOptions midBorder="menuBorder">Login</ListMenuOptions>
+              <ListMenuOptions boldHeader="boldHeader">
+                Not a member?
+              </ListMenuOptions>
               <ListMenuOptions>Sign up and join the community</ListMenuOptions>
             </ListMenu>
             <BlurryImage />
           </>
         )}
-        <PosterImg src={`https://image.tmdb.org/t/p/w500${movieO.poster}`} />
+        <PosterImg src={`https://image.tmdb.org/t/p/w500${oneMovie.poster}`} />
 
         <Circled>
-          <ColoredCircle per={movieO.percent * 10}>
+          <ColoredCircle percentage={oneMovie.percent * 10}>
             <AboveCircle>
-              <Title percentage={"white"}>{movieO.percent * 10}%</Title>
+              <Title percentageColor="white">{oneMovie.percent * 10}%</Title>
             </AboveCircle>
           </ColoredCircle>
         </Circled>
-        <Title> {movieO.title} </Title>
+        <Title> {oneMovie.title} </Title>
         <CardDate>
-          {Moment(movieO.release_date).format("MMM DD, YYYY")}
+          {Moment(oneMovie.release_date).format("MMM DD, YYYY")}
         </CardDate>
 
-        <OverView>{movieO.overview}</OverView>
+        <OverView>{oneMovie.overview}</OverView>
       </Container>
-      {ListClick && <OverlayDiv onClick={overLayHandler} />}
+      {listClick && <OverlayDiv onClick={overLayHandler} />}
     </>
   );
+}
+
+Card.propTypes = {
+  oneMovie: PropTypes.objectOf(Card).isRequired,
 };
 
 export default Card;

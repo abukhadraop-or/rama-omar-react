@@ -1,10 +1,12 @@
 import styled, { css } from "styled-components";
+import { Colors } from "../Res/colors";
+import Breakpoint from "../Res/breakpoints";
 
 export const Divider = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     flex-direction: row;
   }
 `;
@@ -16,12 +18,13 @@ export const LoadMoreButton = styled.button`
   border-radius: 0.4rem;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
-  background-color: #01b4e4;
+  background-color: ${Colors.midBlue};
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
+
   &:hover {
-    color: #0d253f;
+    color: ${Colors.darkBlue};
     cursor: pointer;
   }
   z-index: 135;
@@ -33,30 +36,29 @@ export const CardContainer = styled.div`
   height: 100%;
   margin-top: 7rem;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     margin-right: 6rem;
     margin-left: 6rem;
   }
 `;
 
 export const LeftMenu = styled.div`
-${(props) =>
-      props.apper === true
-        ? css`
-            display: block;
-            position: fixed;
-            width: 85%;
-            height: 100%;
-            background-color: #303756;
-            z-index: 200;
-          `
-        : css`
-            display: none;
-          `}
+  ${({ appearMenu }) =>
+    appearMenu === true
+      ? css`
+          display: block;
+          position: fixed;
+          width: 85%;
+          height: 100%;
+          background-color: ${Colors.mediumDarkBlue};
+          z-index: 200;
+        `
+      : css`
+          display: none;
+        `}
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
     display: none;
-
   }
 `;
 
@@ -64,15 +66,16 @@ export const MenuTitles = styled.h6`
   font-size: 1.5rem;
   color: white;
   padding-left: 2rem;
-  margin-bottom: -2rem;
+  margin: 0;
+  margin-top: 2.5rem;
   cursor: pointer;
 `;
 
 export const MenuInfo = styled.h6`
-  margin-top: 5rem;
-  margin-bottom: -4rem;
+  margin: 0;
+  margin-top: 2.5rem;
   font-size: 1rem;
-  color: #a2a6bb;
+  color: ${Colors.lightGreyishBlue};
   padding-left: 2rem;
   cursor: pointer;
 `;

@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import { CardList } from "../CardList/cardList";
-import { NavBar } from "../NavBar/NavBar";
-import { SortCards } from "../Sort/SortCards";
+import React, { useEffect, useState } from "react";
+import { CardList } from "components/CardList/CardList";
+import { NavBar } from "components/NavBar/NavBar";
+import { SortCards } from "components/Sort/SortCards";
+import { fetchMovies } from "Services/movies";
+import { NavFooter } from "components/Footer/Footer";
 import {
   CardContainer,
   Divider,
@@ -9,57 +11,56 @@ import {
   LoadMoreButton,
   MenuInfo,
   MenuTitles,
-} from "./movies-main.style";
-import { NavFooter } from "../Footer/Footer";
-import  GlobalStyles  from "../../styles/global.style";
+} from "components/MoviesMain/movies-main.style";
+import GlobalStyles from "Styles/global.style";
 
-export const MoviesMain=() => {
+/**
+ * Renders the MoviesMain which renders all the movie cards and the SortCard.
+ * @returns MoviesMain and SortCard.
+ */
+export function MoviesMain() {
   const [movies, setMovies] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [displayMenu, setDisplayMenu] = useState(false);
-  const [SortTypeMain, setSortTypeMain] = useState("popularity.desc");
+  const [sortTypeMain, setSortTypeMain] = useState("popularity.desc");
 
   /*
-  *Adds one on each button click to determine the number of the page to be displayed 
-  */
+   *Adds one on each button click to determine the number of the page to be displayed
+   */
   const LoadMoreClickHandler = () => {
     setPageNum(pageNum + 1);
   };
 
   /**
-  *fetch the api link to set the mapped movie values to the movies state to be sent to the cardList  
-  */
+   **fetch the api link to set the mapped movie values to the movies state to be sent to the cardList.
+   */
+
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=d6566c2bb246801ddff14c1d50aa232e&language=en-US&sort_by=${SortTypeMain}&include_adult=false&include_video=false&page=${pageNum}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        const transformed = data.results.map((movieData) => {
-          return {
-            key: movieData.id,
-            poster: movieData.poster_path,
-            release_date: movieData.release_date,
-            title: movieData.title,
-            percent: movieData.vote_average,
-            overview: movieData.overview,
-          };
-        });
-        setMovies(transformed);
-      });
-  }, [pageNum, SortTypeMain]);
+    const getData = async () => {
+      const { results } = await fetchMovies(sortTypeMain, pageNum);
+      setMovies( 
+        results.map((movieData) => ({
+          id: movieData.id,
+          poster: movieData.poster_path,
+          release_date: movieData.release_date,
+          title: movieData.title,
+          percent: movieData.vote_average,
+          overview: movieData.overview,
+        }))
+        );
+    };
+    getData()
+  }, [pageNum, sortTypeMain]);
 
   return (
     <>
-    < GlobalStyles />
+      <GlobalStyles />
       <NavBar setDisplayMenu={setDisplayMenu} />
-      <LeftMenu apper={displayMenu}>
+      <LeftMenu appearMenu={displayMenu}>
         <MenuTitles>Movies</MenuTitles>
         <MenuTitles>TV Shows</MenuTitles>
         <MenuTitles>People</MenuTitles>
-        <MenuInfo>Contrbution Bible</MenuInfo>
+        <MenuInfo>Contribution Bible</MenuInfo>
         <MenuInfo>Apps</MenuInfo>
         <MenuInfo>Discussions</MenuInfo>
         <MenuInfo>LeaderBoard</MenuInfo>
