@@ -1,21 +1,21 @@
-import styled, { css } from "styled-components";
-import { Colors } from "../Res/colors";
-import Breakpoint from "../Res/breakpoints";
+import styled from 'styled-components';
+import { colors } from 'styles/colors';
+import breakpoint from 'styles/breakpoints';
 
 export const SortCard = styled.div`
-  width: 100%;
-  height: 3rem;
-  border: solid 0.1rem ${Colors.lightGrey};
-  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
   border-radius: 0.5rem;
+  border: solid 0.1rem ${colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${colors.lightGrey};
+  height: 3rem;
   margin-top: 0.75rem;
+  width: 100%;
   z-index: 132;
 
   &:hover {
     cursor: pointer;
   }
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     width: 18rem;
   }
 `;
@@ -30,29 +30,28 @@ export const SortContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  z-index: 133;
   margin-left: 3rem;
   margin-right: 2rem;
+  z-index: 133;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    margin-left: 6rem;
-    margin-right: 2rem;
-  }
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    flex-basis: 25%;
+   // margin-right: 0;
+    }
 `;
 
 export const ShowedDetails = styled.div`
-  width: 100%;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border: solid 0.1rem ${colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${colors.lightGrey};
+  border-top: none;
+  display: ${({ displayDetails }) => (displayDetails === true ? 'block' : 'none')};
   height: 7rem;
   margin-top: -1.2rem;
-  border: solid 0.1rem ${Colors.lightGrey};
-  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
-  border-top: none;
-  border-bottom-right-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-  display: ${({ displayDetails }) =>
-    displayDetails === true ? "block" : "none"};
+  width: 100%;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     width: 18rem;
   }
 `;
@@ -64,21 +63,21 @@ export const ShowedText = styled.p`
 `;
 
 export const DropMenu = styled.select`
-  width: 90%;
-  height: 2.7rem;
-  margin-left: 1rem;
-  background-color: ${Colors.lightGrey};
-  border: none;
+   height: 2.7rem;
+  background-color: ${colors.lightGrey};
   border-radius: 0.3rem;
-
+  border: none;
+  margin-left: 1rem;
+  width: calc(100% - 2rem);
+ 
   &:hover {
-    background-color: ${Colors.veryLightGrey};
+    background-color: ${colors.veryLightGrey};
   }
 `;
 
 export const DropOption = styled.option`
-  color: black;
   background-color: white;
+  color: black;
 `;
 
 export const SortForm = styled.form`
@@ -86,30 +85,29 @@ export const SortForm = styled.form`
 `;
 
 export const SortBtn = styled.button`
-  border: none;
   border-radius: 2rem;
-  width: 100%;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
   height: 3rem;
   margin-top: 2rem;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
+  width: 100%;
   z-index: 134;
 
-  ${({ disable }) =>
-    disable === "false"
-      ? css`
-          background-color: ${Colors.midBlue};
+  ${({ disable }) => (disable === 'false'
+    && `
+          background-color: ${colors.midBlue};
           &:hover {
-            background-color: ${Colors.darkBlue};
+            background-color: ${colors.darkBlue};
           }
-        `
-      : css`
+        `)
+    || (`
           disabled: disabled;
           color: grey;
-        `}
+        `)}
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     width: 18rem;
   }
 `;

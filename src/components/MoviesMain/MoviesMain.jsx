@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { CardList } from "components/CardList/CardList";
-import { NavBar } from "components/NavBar/NavBar";
-import { SortCards } from "components/Sort/SortCards";
-import { fetchMovies } from "Services/movies";
-import { NavFooter } from "components/Footer/Footer";
+import React, { useEffect, useState } from 'react';
+import { CardList } from 'components/CardList/CardList';
+import { NavBar } from 'components/NavBar/NavBar';
+import { SortCards } from 'components/Sort/SortCards';
+import { fetchMovies } from 'services/movies';
+import { NavFooter } from 'components/Footer/Footer';
 import {
   CardContainer,
   Divider,
@@ -11,46 +11,67 @@ import {
   LoadMoreButton,
   MenuInfo,
   MenuTitles,
-} from "components/MoviesMain/movies-main.style";
-import GlobalStyles from "Styles/global.style";
+} from 'components/MoviesMain/movies-main.style';
+import GlobalStyles from 'styles/global.style';
 
 /**
  * Renders the MoviesMain which renders all the movie cards and the SortCard.
- * @returns MoviesMain and SortCard.
+ *
+ * @return MoviesMain and SortCard
  */
 export function MoviesMain() {
   const [movies, setMovies] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [displayMenu, setDisplayMenu] = useState(false);
-  const [sortTypeMain, setSortTypeMain] = useState("popularity.desc");
+  const [sortTypeMain, setSortTypeMain] = useState('popularity.desc');
 
   /*
    *Adds one on each button click to determine the number of the page to be displayed
    */
-  const LoadMoreClickHandler = () => {
+  const loadMoreClickHandler = () => {
     setPageNum(pageNum + 1);
   };
 
   /**
-   **fetch the api link to set the mapped movie values to the movies state to be sent to the cardList.
+   * Set the mapped movie values to the movies state to be sent to the cardList.
    */
-
   useEffect(() => {
     const getData = async () => {
       const { results } = await fetchMovies(sortTypeMain, pageNum);
-      setMovies( 
-        results.map((movieData) => ({
+      setMovies([
+        ...movies,
+        ...results.map((movieData) => ({
           id: movieData.id,
+          overview: movieData.overview,
+          percent: movieData.vote_average,
           poster: movieData.poster_path,
           release_date: movieData.release_date,
           title: movieData.title,
-          percent: movieData.vote_average,
-          overview: movieData.overview,
-        }))
-        );
+        })),
+      ]);
     };
-    getData()
+
+    getData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNum, sortTypeMain]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const { results } = await fetchMovies(sortTypeMain, 1);
+      setMovies(
+        results.map((movieData) => ({
+          id: movieData.id,
+          overview: movieData.overview,
+          percent: movieData.vote_average,
+          poster: movieData.poster_path,
+          release_date: movieData.release_date,
+          title: movieData.title,
+        })),
+      );
+    };
+
+    getData();
+  }, [sortTypeMain]);
 
   return (
     <>
@@ -70,11 +91,12 @@ export function MoviesMain() {
         <MenuInfo>About</MenuInfo>
         <MenuInfo>Login</MenuInfo>
       </LeftMenu>
+
       <Divider>
         <SortCards setSortTypeMain={setSortTypeMain} />
         <CardContainer>
           <CardList movies={movies} />
-          <LoadMoreButton onClick={LoadMoreClickHandler}>
+          <LoadMoreButton onClick={loadMoreClickHandler}>
             Load More
           </LoadMoreButton>
         </CardContainer>

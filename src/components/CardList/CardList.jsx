@@ -1,12 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { MovieListContainer } from "components/CardList/card-list.style";
-import { Card } from "components/Card/Card";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { MovieListContainer } from 'components/CardList/card-list.style';
+import { Card } from 'components/Card/Card';
 
 /**
  * Maps each movie in movies into a card.
- * @param {array of objects} movies
- * @returns cardList
+ *
+ * @param {object} props
+ * @param {array<Card>} props.movies
+ *
+ * @return cardList
  */
 export function CardList({ movies }) {
   return (

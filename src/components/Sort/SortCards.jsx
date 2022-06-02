@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   SortCard,
   SortText,
@@ -11,32 +11,35 @@ import {
   SortForm,
   SortBtn,
   PopularTitle,
-} from "components/Sort/sort-cards.style";
+} from 'components/Sort/sort-cards.style';
 
 /**
  * Renders the SortCard
- * @param {function} setSortTypeMain
- * @returns SortCard
+ *
+ * @param {object} props
+ * @param {function} props.setSortTypeMain
+ *
+ * @return SortCard
  */
 export function SortCards({ setSortTypeMain }) {
   const [sortState, setSortState] = useState(true);
-  const [sortType, setSortType] = useState("popularity.desc");
-  const [btnDisabled, setBtnDisabled] = useState("disabled");
+  const [sortType, setSortType] = useState('popularity.desc');
+  const [btnDisabled, setBtnDisabled] = useState('disabled');
 
   /**
    *
    *Toggles the SortState to show or hide a menu to choose the sorting type
    */
-  const SortClickHandler = () => {
+  const sortClickHandler = () => {
     setSortState(!sortState);
   };
 
   /**
-   *Sets the btnDisabled to false so it can be clicked and set the sort type to tje value that is sent by the props to be used in the api link.
+   * Sets the btnDisabled to false so the button can be clicked and sets the sort type to api link.
    * @param props that holds the sort type
    */
   const searchOnChangeHandler = (props) => {
-    setBtnDisabled("false");
+    setBtnDisabled('false');
     setSortType(props);
   };
 
@@ -53,7 +56,7 @@ export function SortCards({ setSortTypeMain }) {
     <SortContainer>
       <PopularTitle>Popular Movies</PopularTitle>
       <SortForm>
-        <SortCard onClick={SortClickHandler}>
+        <SortCard onClick={sortClickHandler}>
           <SortText>Sort</SortText>
         </SortCard>
         <ShowedDetails displayDetails={sortState}>

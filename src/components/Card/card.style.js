@@ -1,43 +1,42 @@
-import styled, { css } from "styled-components";
-import { Colors } from "../Res/colors";
-import Breakpoint from "../Res/breakpoints";
+import styled from 'styled-components';
+import { colors } from 'styles/colors';
+import breakpoint from 'styles/breakpoints';
 
 export const Container = styled.div`
   border-radius: 0.5rem;
-  border: solid 0.1rem ${Colors.lightGrey};
-  box-shadow: 0.2rem 0.2rem 0.2rem ${Colors.lightGrey};
+  border: solid 0.1rem ${colors.lightGrey};
+  box-shadow: 0.2rem 0.2rem 0.2rem ${colors.lightGrey};
+  height: auto;
   position: relative;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h6`
   color: black;
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
-  position: relative;
+  height: auto;
   margin-left: 7rem;
-  margin-top: -8.5rem;
+  margin-top: 1rem;
+  position: relative;
   width: auto;
   z-index: 1;
-  height: auto;
 
   &:hover {
-    color: ${Colors.hoveredBlue};
+    color: ${colors.hoveredBlue};
     cursor: pointer;
   }
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     display: block;
     margin-left: 0.5rem;
     margin-top: 2rem;
     position: relative;
 
-    ${({ percentageColor }) =>
-      percentageColor === "white" &&
-      `
+    ${({ percentageColor }) => percentageColor === 'white' && `
             color: white;
-            margin-top: 0.5rem;
             margin-left: 0.09rem;
+            margin-top: 0.5rem;
 
             &:hover {
               color: white;
@@ -45,37 +44,37 @@ export const Title = styled.p`
               z-index: 103;
             }
           `}
-    ${({ percentageColor }) =>
-      percentageColor !== "white" &&
-      `
-      color: black;`}
+    ${({ percentageColor }) => percentageColor !== 'white' && 'color: black;'}
   }
 `;
 
 export const PosterImg = styled.img`
-  width: 6rem;
-  height: 100%;
-  border-top-right-radius: 0rem;
-  border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0rem;
+  height: 100%;
   object-fit: fill;
+  position: absolute;
+  width: 6rem;
   z-index: -1;
-  position: relative;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    width: 100%;
-    height: auto;
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    border-bottom-left-radius: 0rem;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    border-bottom-left-radius: 0rem;
+    height: auto;
+    position: relative;
+    width: 100%;
   }
 `;
 
 export const CardDate = styled.div`
+  color: ${colors.midGrey};
   margin-left: 7rem;
-  color: ${Colors.midGrey};
+  margin-top: -1.5rem;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    margin-bottom: 1rem;
     margin-left: 0.5rem;
   }
 `;
@@ -83,132 +82,124 @@ export const CardDate = styled.div`
 export const Circled = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    background-color: ${Colors.darkGrey};
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    background-color: ${colors.darkGrey};
     border-radius: 3rem;
-    height: 2.5rem;
-    width: 2.5rem;
-    margin-top: -1rem;
-    margin-left: 0.5rem;
-    z-index: 97;
-    position: absolute;
     display: block;
+    height: 2.5rem;
+    margin-left: 0.5rem;
+    margin-top: -1rem;
+    position: absolute;
+    width: 2.5rem;
+    z-index: 97;
   }
 `;
 
 export const ColoredCircle = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    ${({ percentage }) =>
-      (percentage >= 70 &&
-        `
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    ${({ percentage }) => (percentage >= 70 && `
             background: conic-gradient(
-              ${Colors.ratingGreen} 0,
-              ${Colors.ratingGreen} ${percentage}%,
-              ${Colors.lightRatingGreen} 0,
-              ${Colors.lightRatingGreen} 100%
+              ${colors.ratingGreen} 0,
+              ${colors.ratingGreen} ${percentage}%,
+              ${colors.lightRatingGreen} 0,
+              ${colors.lightRatingGreen} 100%
             );
-          `) ||
-      (percentage >= 50 &&
-        percentage < 70 &&
-        `
+          `
+  ) || (percentage >= 50 && percentage < 70 && `
             background: conic-gradient(
-              ${Colors.ratingYellow} 0,
-              ${Colors.ratingYellow} ${percentage}%,
-              ${Colors.lightRatingYellow} 0,
-              ${Colors.lightRatingYellow} 100%
+              ${colors.ratingYellow} 0,
+              ${colors.ratingYellow} ${percentage}%,
+              ${colors.lightRatingYellow} 0,
+              ${colors.lightRatingYellow} 100%
             );
-          `) ||
-      (percentage < 50 &&
-        `
+          `) || (percentage < 50 && `
         background: conic-gradient(
-              ${Colors.ratingRed} 0,
-              ${Colors.ratingRed} ${percentage}%,
-              ${Colors.lightRatingRed} 0,
-              ${Colors.lightRatingRed} 100%
+              ${colors.ratingRed} 0,
+              ${colors.ratingRed} ${percentage}%,
+              ${colors.lightRatingRed} 0,
+              ${colors.lightRatingRed} 100%
             );
           `)}
 
-    height: 2.2rem;
-    width: 2.2rem;
-    display: block;
     border-radius: 3rem;
-    z-index: 98;
-    margin-top: 0.13rem;
+    display: block;
+    height: 2.2rem;
     margin-left: 0.12rem;
+    margin-top: 0.13rem;
     position: absolute;
+    width: 2.2rem;
+    z-index: 98;
   }
 `;
 
 export const AboveCircle = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    background-color: ${Colors.darkGrey};
-    z-index: 99;
-    height: 1.9rem;
-    width: 1.9rem;
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    background-color: ${colors.darkGrey};
     border-radius: 3rem;
-    position: absolute;
-    margin-top: 0.18rem;
-    margin-left: 0.16rem;
-    font-size: 0.9rem;
     display: block;
+    font-size: 0.9rem;
+    height: 1.9rem;
+    margin-left: 0.16rem;
+    margin-top: 0.18rem;
+    position: absolute;
+    width: 1.9rem;
+    z-index: 99;
   }
 `;
 
 export const ListButton = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    width: 1.35rem;
-    height: 1.35rem;
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    background-color: ${colors.transparentWhite};
     border-radius: 2rem;
-    background-color: ${Colors.transparentWhite};
-    z-index: 124;
-    text-align: center;
+    color: ${colors.veryDarkBlue};
+    display: ${({ listShow }) => (listShow === true ? 'none' : 'block')};
+    height: 1.35rem;
     position: absolute;
-    top: 0.5rem;
     right: 1rem;
-    color: ${Colors.veryDarkBlue};
+    text-align: center;
+    top: 0.5rem;
+    width: 1.35rem;
+    z-index: 124;
+
     &:hover {
-      background-color: ${Colors.midBlue};
+      background-color: ${colors.midBlue};
       cursor: pointer;
     }
-    display: ${({ listShow }) => (listShow === true ? "none" : "block")};
   }
 `;
 
 export const ListMenu = styled.div`
   background-color: white;
-  z-index: 131;
-  position: absolute;
-  width: 20rem;
+  border-bottom: 0.1rem solid grey;
+  border-radius: 0.4rem;
   height: 10rem;
   margin-left: 4rem;
   margin-top: 2.25rem;
-  border-radius: 0.4rem;
-  border-bottom: 0.1rem solid grey;
+  position: absolute;
+  width: 20rem;
+  z-index: 131;
 `;
 
 export const ListMenuOptions = styled.div`
-  ${({ boldHeader }) =>
-    boldHeader === "boldHeader"
-      ? css`
+  ${({ boldHeader }) => (boldHeader === 'boldHeader' && `
           font-weight: bold;
-        `
-      : css`
-          border-bottom: ${({ midBorder }) =>
-            midBorder === "menuBorder" ? "0.1rem solid grey" : "none"};
+        `)
+    || (`
+          border-bottom: ${({ midBorder }) => (midBorder === 'menuBorder' ? '0.1rem solid grey' : 'none')};
           color: grey;
 
           &:hover {
+            background-color: ${colors.darkBlue};
             color: white;
-            background-color: ${Colors.darkBlue};
             cursor: pointer;
           }
-        `}
+        `)}
 
   padding: 0.65rem;
   font-size: 1rem;
@@ -216,8 +207,8 @@ export const ListMenuOptions = styled.div`
 
 export const TitleHovered = styled.div`
   background-color: grey;
-  color: white;
   border: 0.2rem solid white;
+  color: white;
   height: 4rem;
   width: 4rem;
 `;
@@ -233,27 +224,26 @@ export const BlurryImage = styled.div`
 `;
 
 export const OverlayDiv = styled.div`
-  height: 100%;
-  width: 100%;
-  left: 0rem;
   bottom: 0rem;
+  height: 100%;
+  left: 0rem;
+  position: fixed;
   right: 0rem;
   top: 0rem;
-  position: fixed;
+  width: 100%;
   z-index: 125;
 `;
 
 export const OverView = styled.p`
+  border: none;
   display: inline-block;
-  position: absolute;
-  margin-top: 1.5rem;
+  height: 2rem;
   margin-left: 7rem;
+  margin-top: 1.5rem;
   overflow: hidden;
   width: auto;
-  height: 2rem;
-  border: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     display: none;
   }
 `;

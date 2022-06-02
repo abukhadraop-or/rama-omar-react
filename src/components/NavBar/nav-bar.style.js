@@ -1,21 +1,21 @@
 import styled from 'styled-components';
-import { Colors } from '../Res/colors';
-import Breakpoint from '../Res/breakpoints';
+import { ReactComponent as SmallNavLogo } from 'assets/smallNavLogo.svg';
+import { colors } from 'styles/colors';
+import breakpoint from 'styles/breakpoints';
 
 export const NavBarHeader = styled.nav`
-  background-color: ${Colors.darkBlue};
-  width: 100%;
+  background-color: ${colors.darkBlue};
+  display: flex;
   height: 4rem;
-  overflow: hidden;
+  width: 100%;
 `;
 
-export const NavText = styled.p`
+export const NavText = styled.h4`
   color: white;
   font-size: 1rem;
-  padding-top: 0.5rem;
+  font-weight: ${({ sign }) => (sign === 'plus' && 'bold')};
   padding-right: 1.5rem;
-  float: left;
-  font-weight: ${({ sign }) => (sign === 'plus' ? 'bold' : 'none')};
+  padding-top: 0.5rem;
 
   &:hover {
     cursor: pointer;
@@ -23,23 +23,27 @@ export const NavText = styled.p`
 `;
 
 export const Logo = styled.img`
-  float: left;
-  width: 10rem;
-  height: 4rem;
-  padding-right: 1.5rem;
-  margin-left: 10%;
+  display: none;
+  
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    display: block;
+    height: 4rem;
+    margin-left: 13rem;
+    padding-right: 1.5rem;
+    width: 10rem;
 
-  &:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
 export const NavTextSelect = styled.div`
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 0.1rem solid black;
   height: fit-content;
   width: 4rem;
-  background-color: white;
-  border: 0.1rem solid black;
-  border-radius: 0.5rem;
 `;
 
 export const NavTextOption = styled.div`
@@ -52,55 +56,56 @@ export const NavTextOption = styled.div`
 export const RightNavText = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    display: block;
-    float: right;
-    margin-right: 9rem;
-    width: 9rem;
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+    margin-right: 15rem;
+    overflow: hidden;
   }
 `;
 
 export const LeftNavText = styled.div`
   display: none;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
-    display: block;
-    float: left;
-    margin-left: 2rem;
-    width: 35rem;
+  @media screen and (min-width: ${breakpoint.tablet}) {
+    display: flex;
+    flex-grow: 1;
   }
 `;
 
-export const SmallNavImg = styled.img`
-  display: block;
-  width: 8rem;
-  height: 2.5rem;
-  margin-left: 40%;
+export const SmallNavImg = styled(SmallNavLogo)`
+  display: flex;
+  flex-grow: 1;
+  height: 3rem;
+  justify-content: center;
   margin-top: 0.5rem;
+  width: 8rem;
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     display: none;
   }
 `;
 
 export const SmallNavMenu = styled.div`
   display: block;
-  position: absolute;
-  width: 2rem;
   height: 4rem;
-  float: left;
   margin-left: 3rem;
   margin-top: 1.3rem;
+  position: absolute;
+  width: 2rem;
+ 
+  path {
+    color:lin;
+  }
 
-  @media screen and (min-width: ${Breakpoint.landscapeMood}) {
+  @media screen and (min-width: ${breakpoint.tablet}) {
     display: none;
   }
 `;
 
 export const MenuLines = styled.div`
-  height: 0.3rem;
-  width: 100%;
   background-color: white;
-  margin-top: 0.2rem;
   border-radius: 0.3rem;
+  height: 0.3rem;
+  margin-top: 0.2rem;
+  width: 100%;
 `;

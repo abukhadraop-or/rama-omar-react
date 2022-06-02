@@ -12,7 +12,8 @@
     "airbnb/hooks",
     "prettier",
     "plugin:jsx-a11y/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "eslint-config-airbnb-base"
   ],
   "parser": "@babel/eslint-parser",
   "plugins": ["babel", "jest", "import", "prettier", "react-hooks"],

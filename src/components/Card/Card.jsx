@@ -1,6 +1,6 @@
-import Moment from "moment";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import Moment from 'moment';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -16,25 +16,28 @@ import {
   BlurryImage,
   OverlayDiv,
   OverView,
-} from "./card.style";
+} from './card.style';
 
 /**
  * Renders each movie card with its' content.
- * @param {object} oneMovie
- * @returns Card object.
+ *
+ * @param {object} props
+ * @param {Promise<Card>} props.oneMovie
+ *
+ * @return Card object
  */
 export function Card({ oneMovie }) {
   const [listClick, setListClick] = useState(false);
 
   /**
-   *Toggles the listClick state that blurs the card and displays a list.
+   * Toggles the listClick state that blurs the card and displays a list.
    */
-  const ListOnClickHandler = () => {
+  const listOnClickHandler = () => {
     setListClick(!listClick);
   };
 
   /**
-   *Sets the ListClick to false to un blur the cards and hide the list
+   * Sets the ListClick to false to un blur the cards and hide the list.
    */
   const overLayHandler = () => {
     setListClick(false);
@@ -43,7 +46,7 @@ export function Card({ oneMovie }) {
   return (
     <>
       <Container>
-        <ListButton onClick={ListOnClickHandler} listShow={listClick}>
+        <ListButton onClick={listOnClickHandler} listShow={listClick}>
           ...
         </ListButton>
 
@@ -73,7 +76,7 @@ export function Card({ oneMovie }) {
         </Circled>
         <Title> {oneMovie.title} </Title>
         <CardDate>
-          {Moment(oneMovie.release_date).format("MMM DD, YYYY")}
+          {Moment(oneMovie.release_date).format('MMM DD, YYYY')}
         </CardDate>
 
         <OverView>{oneMovie.overview}</OverView>
