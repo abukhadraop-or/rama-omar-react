@@ -55,6 +55,9 @@ export function MoviesMain() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNum, sortTypeMain]);
 
+  /**
+   * Set the first 20 sorted movies if the sort type changes.
+   */
   useEffect(() => {
     const getData = async () => {
       const { results } = await fetchMovies(sortTypeMain, 1);
